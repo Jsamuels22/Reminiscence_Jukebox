@@ -20,8 +20,6 @@ public class PlayAudio : MonoBehaviour
 
     private void Start()
     {
-
-
         AnimationSpeed = GameObject.FindGameObjectWithTag("Anim").GetComponent<AnimationSpeed>();
 
         GameObject go_c = GameObject.FindGameObjectWithTag("Timer");
@@ -30,6 +28,9 @@ public class PlayAudio : MonoBehaviour
             difficultyTimer = GameObject.FindGameObjectWithTag("Timer").GetComponent<DifficultyTimer>();
         }
 
+
+
+        //find the active song by looking at which child of this object is active, and call this "selectedSong"
         audioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -50,7 +51,10 @@ public class PlayAudio : MonoBehaviour
   
         Debug.Log("song duration" + songDuration);
     }
-    
+
+
+    //find the selected song name, instantiate the correct UI at the top of the screen,
+    //depending on the resource name 
     public void SongUI()
     {
         GameObject selectedSongIcon = (GameObject)Instantiate(Resources.Load(selectedSongName + "MainGame"));
@@ -64,6 +68,8 @@ public class PlayAudio : MonoBehaviour
     }
 
 
+
+    //find the selected song and play it
     public void PlaySong()
     {
         SongUI();
@@ -85,14 +91,9 @@ public class PlayAudio : MonoBehaviour
         child.GetComponent<AudioSource>().UnPause();
     }
 
-    public void AudioFinished()
-    {
-        //gameOverUI.SetActive(true);
-        //HideCircle.CircleOff = true;
 
-
-    }
-
+    // find how long the selected song is, wait that ammount of time, then show end screen. If there is a circle
+    // as the song ends, destroy the circle
     IEnumerator WhenSongEnds()
     {
         yield return new WaitForSeconds(songDuration);

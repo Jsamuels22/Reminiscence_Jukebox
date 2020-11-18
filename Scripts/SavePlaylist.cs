@@ -22,6 +22,9 @@ public class SavePlaylist : MonoBehaviour
         
     }
 
+
+    //if a player attempts to remove the last song from the playlist, leaving it empty, stop them from being
+    //able to drag a song and display the warning UI
     private void Update()
     {
         if (playlistSlot.transform.childCount > 0)
@@ -30,8 +33,6 @@ public class SavePlaylist : MonoBehaviour
             EmptyPlaylist = false;
             reorderableList.IsDraggable = true;
             reorderableList.IsDropable = true;
-
-
 
         }
         else

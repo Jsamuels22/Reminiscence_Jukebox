@@ -14,9 +14,6 @@ public class PauseMenu : MonoBehaviour
     DifficultyTimer difficultyTimer;
     PlayAudio playAudio;
     PauseUI pauseUI;
-    //HideCircle hideCircle;
-
-
 
     private void Start()
     {
@@ -27,27 +24,17 @@ public class PauseMenu : MonoBehaviour
         }
     
 
-
         GameObject go_d = GameObject.FindGameObjectWithTag("SongSelection");
         if (go_d)
         {
             playAudio = GameObject.FindGameObjectWithTag("SongSelection").GetComponent<PlayAudio>();
         }
 
-        //GameObject h = GameObject.FindGameObjectWithTag("Spawnable");
-        //if (h)
-        //{
-        //    hideCircle = GameObject.FindGameObjectWithTag("Spawnable").GetComponent<HideCircle>();
-        //}
-
-
-
-
     }
 
     public void Update()
     {
-
+        //if the pause menu or the settings menu are active, the game is paused
         if (pauseMenuUI.activeSelf || settingsMenuUI.activeSelf)
         {
 
@@ -69,22 +56,16 @@ public class PauseMenu : MonoBehaviour
             }
     }
 
+    //when paused, hide any circles, pause any music and stop time
     public void Pause()
     {
-
-        //pauseMenuUI.SetActive(true);
-
+       
         GameObject go = GameObject.FindGameObjectWithTag("Spawnable");
         if (go)
         {
             HideCircle.CircleOff = true;
             Debug.Log("Circle off" + HideCircle.CircleOff);
         }
-      
- 
-
-  
-        //GameIsPaused = true;
 
 
         GameObject go_d = GameObject.FindGameObjectWithTag("SongSelection");
@@ -98,9 +79,10 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-
+    //when game is resumed, start time and show any circles
     public void Resume()
     {
+
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
 
@@ -108,7 +90,7 @@ public class PauseMenu : MonoBehaviour
         if (go)
         {
             HideCircle.CircleOff = false;
-            //Debug.Log("Circle off" + HideCircle.CircleOff);
+      
         }
  
         GameIsPaused = false;
@@ -116,12 +98,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-
-
-
-
-
-
+    //if settings are on, hide circles, hide home UI, pause the difficulty timer, but allow time to start, so any scene changes can be done
     public void SettingsMenuOn()
     {
 
@@ -148,12 +125,11 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-    
+                 Debug.Log("NoHomeUI");
             }
 
 
-                Debug.Log("settingsOn" + settingsOn);
-
+        Debug.Log("settingsOn" + settingsOn);
 
 
         GameObject go_c = GameObject.FindGameObjectWithTag("Timer");
@@ -171,21 +147,6 @@ public class PauseMenu : MonoBehaviour
 
     public void SettingsMenuOff()
     {
-        //settingsOn = false;
-        //Debug.Log("settingsOn" + settingsOn);
-
-
-        //GameObject go = GameObject.FindGameObjectWithTag("Spawnable");
-        //if (go)
-        //{
-        //    HideCircle.CircleOff = false;
-        //    Debug.Log("Circle off" + HideCircle.CircleOff);
-        //}
-        //else
-        //{
-        //    Debug.Log("no Spawnable");
-        //}
-
 
         GameObject go_b = GameObject.FindGameObjectWithTag("HomeUI");
         if (go_b)
@@ -211,16 +172,6 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("ShowUI");
         }
 
-
-        //GameObject go_c = GameObject.FindGameObjectWithTag("Timer");
-        //if (go_c)
-        //{
-        //    difficultyTimer.startTimer = true;
-        //}
-        //else
-        //{
-        //    Debug.Log("no Timer");
-        //}
 
     }
 

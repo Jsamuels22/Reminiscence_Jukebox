@@ -20,23 +20,22 @@ public class SongSelection : MonoBehaviour
 
         playlistSelection = GameObject.FindGameObjectWithTag("Singleton").GetComponent<PlaylistSelection>();
 
+        //check the list of strings in the playlist
         for (int i = 0; i < playlistSelection.stringPlaylist.Count; i++)
         {
-
+            //instantiate the selected songs into the scene
             GameObject selectedSong = (GameObject)Instantiate(Resources.Load(playlistSelection.stringPlaylist[i]));
             selectedSong.name = playlistSelection.stringPlaylist[i].ToString();
 
+            //move them under the parent of the song window and adjust their position
             RectTransform rt = selectedSong.GetComponent<RectTransform>();
             selectedSong.transform.parent = GameObject.Find("SongWindow").transform;
             rt.sizeDelta = new Vector2(1, 1);
             selectedSong.transform.localScale = new Vector3(1, 1, 1);
             selectedSong.transform.position = new Vector3(0, 1.2f, 0);
-
-
         }
 
-
-
+        //save the index of the selected song
         index = PlayerPrefs.GetInt("SongSelected");
 
         Debug.Log("playerPrefs song selected" + PlayerPrefs.GetInt("SongSelected"));
@@ -109,7 +108,7 @@ public class SongSelection : MonoBehaviour
 
     public void LoadMainGame()
     {
-
+        //save the selected song index
         PlayerPrefs.SetInt("SongSelected", index);
         pauseMenu.Resume();
         SceneManager.LoadScene(3);

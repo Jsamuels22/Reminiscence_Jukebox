@@ -11,6 +11,7 @@ public class PlaylistSelection : MonoBehaviour
 
     public List<string> stringPlaylist = new List<string>();
 
+    // create singleton, start by adding the default songs to its list
     private void Awake()
     {
 
@@ -29,11 +30,10 @@ public class PlaylistSelection : MonoBehaviour
         stringPlaylist.Add("SinginInTheRain");
         stringPlaylist.Add("ComeFlyWithMe");
 
-
     }
 
 
-
+    // when exiting the playlist selection scene, clear the string list and re-fil;
     public void CheckPlaylist() 
     {
 
@@ -42,6 +42,7 @@ public class PlaylistSelection : MonoBehaviour
         FillPlaylist();
     }
 
+    //find the playlist gameObject, get the names of its children and add it to a list of strings
     public void FillPlaylist()
     {
 

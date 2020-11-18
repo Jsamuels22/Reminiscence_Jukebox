@@ -17,29 +17,20 @@ public class tutorialSpawn : MonoBehaviour
         difficultyTimer = GameObject.FindGameObjectWithTag("Timer").GetComponent<DifficultyTimer>();
     }
 
-    public void Update()
-    {
-        if (counter == 9)
-        {
-
-            //difficultyTimer.startTimer = false;
-            //Debug.Log("stopTimer");
-            //Debug.Log(difficultyTimer.startTimer);
-            //difficultyTimer.TestDifficulty();
-            //Debug.Log("TestDifficulty");
-       
-        }
-    }
-
-
+    
+    //as a circle in the tutorial is spawned, count up
     public void tutorialSpawnObjects()
     {
         counter += 1;
 
         Debug.Log(counter);
 
+        //if it is not the last circle
         if (counter != 9)
         {
+
+            //spawn a random circle, selected from a predetermined pool of items, within the boundaries
+            //of a quad
             int randomCircle = 0;
             GameObject toSpawn;
             MeshCollider c = quad.GetComponent<MeshCollider>();
@@ -61,17 +52,18 @@ public class tutorialSpawn : MonoBehaviour
         }
         else
         {
+            //if it is the last circle, stop the timer, and test a players difficulty using the timer
             difficultyTimer.startTimer = false;
             Debug.Log("stopTimer");
             Debug.Log(difficultyTimer.startTimer);
             difficultyTimer.TestDifficulty();
             Debug.Log("TestDifficulty");
 
-
+            //destroy the spawner when the tutorial ends to stop any more circles spawning
             GameObject.Destroy(this);
 
         }
-        Debug.Log("spawner");
+     
 
     }
 }

@@ -5,12 +5,11 @@ using UnityEngine;
 public class SetAnimationSpeed : MonoBehaviour
 {
 
-
     Animator circleAnim;
     AnimationSpeed animationSpeed;
     public float animateSpeed;
 
-
+    
     private void Awake()
     {
         circleAnim = GetComponent<Animator>();
@@ -22,6 +21,7 @@ public class SetAnimationSpeed : MonoBehaviour
 
     }
 
+    //find the animation speed from the Animation controller game object and set the circle animation speed
     private void Update()
     {
         animateSpeed = animationSpeed.animSpeed;

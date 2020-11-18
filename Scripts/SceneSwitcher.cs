@@ -11,7 +11,7 @@ public class SceneSwitcher : MonoBehaviour
 
 
 
-
+    //this script is used to manage all scene transitions
     private void Start()
     {
         Scene = SceneManager.GetActiveScene();
@@ -19,8 +19,6 @@ public class SceneSwitcher : MonoBehaviour
 
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         playlistSelection = GameObject.FindGameObjectWithTag("Singleton").GetComponent<PlaylistSelection>();
-
-
     }
 
 
@@ -36,10 +34,7 @@ public class SceneSwitcher : MonoBehaviour
 
         pauseMenu.Resume();
 
-        ////DEBUG to load tutorial
-        //SceneManager.LoadScene(1);
-
-
+            //If it is a users first time playing the game
         if (PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1)
         {
             Debug.Log("First Time Opening");
@@ -47,7 +42,7 @@ public class SceneSwitcher : MonoBehaviour
             //Set first time opening to false
             PlayerPrefs.SetInt("FIRSTTIMEOPENING", 0);
 
-            //Do your stuff here
+           //load the tutorial scene
             SceneManager.LoadScene(1);
 
             Debug.Log("Start Tutorial");
@@ -56,7 +51,7 @@ public class SceneSwitcher : MonoBehaviour
         {
             Debug.Log("NOT First Time Opening");
 
-            //Do your stuff here
+            //Load the song selection scene
             SceneManager.LoadScene(2);
             Debug.Log("Load Song Selection");
         }

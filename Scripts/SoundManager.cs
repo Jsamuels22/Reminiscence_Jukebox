@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     static AudioSource audioSource;
    
 
-    // Start is called before the first frame update
+    //load C major scale notes
     void Start()
     {
 
@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
 
 
 
-
+    //as the counter in the tutorial counts up, the audio source played changes, playing the notes in order
     public static void PlaySound(int clip)
     {
         switch (clip)

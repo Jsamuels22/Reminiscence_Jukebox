@@ -16,6 +16,9 @@ public class ResetSettings : MonoBehaviour
 
     }
 
+    //reset all settings,  clear the saved playlist and assume it is a users first time opening,
+    //this will force a user to play the tutorial before the main game, therefore, allowing on opportunity
+    // to set a new difficulty level
     public void ResetAllSettings(bool isOn)
     {
         if (isOn)
